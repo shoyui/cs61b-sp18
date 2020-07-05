@@ -32,6 +32,7 @@ public class TestUpdate {
     /**
      *  Checks the Planet class to make sure update works.
      */
+
     private static void checkUpdate() {
         System.out.println("Checking update...");
 
@@ -44,4 +45,5 @@ public class TestUpdate {
         checkEquals(7.8, p1.xxPos, "xxPos update()", 0.01);
         checkEquals(8.6, p1.yyPos, "yyPos update()", 0.01);
     }
+
 }
