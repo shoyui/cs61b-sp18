@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Formatter;
 
 /**
@@ -74,6 +75,18 @@ public class IntList {
 
     /** DO NOT MODIFY ANYTHING ABOVE THIS LINE! */
 
+    /** Return the size of the list using... recursion! */
+    public int size() {
+        IntList p = this;
+        if (this.rest == null)
+        {
+            return 1;
+        }
+        else
+        {
+            return 1 + this.rest.size();
+        }
+    }
 
     /**
      * Returns a list consisting of the elements of A followed by the
@@ -81,8 +94,12 @@ public class IntList {
      */
 
     public static IntList dcatenate(IntList A, IntList B) {
-        //TODO:  fill in method
-        return null;
+        IntList ptr = A;
+        while (ptr.rest != null){
+            ptr = ptr.rest;
+        }
+        ptr.rest = B;
+        return A;
     }
 
     /**
@@ -90,8 +107,26 @@ public class IntList {
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
     public static IntList catenate(IntList A, IntList B) {
-        //TODO:  fill in method
-        return null;
+        IntList L = new IntList(A.first, null);
+        IntList ptr1 = A.rest;
+        IntList ptr2 = L;
+
+        while (ptr1 != null){
+            ptr2.rest = new IntList(ptr1.first, null);
+            ptr1 = ptr1.rest;
+            ptr2 = ptr2.rest;
+        }
+        ptr2.rest = new IntList(B.first, null);
+        ptr2 = ptr2.rest;
+        ptr1 = B.rest;
+
+        while (ptr1 != null){
+            ptr2.rest = new IntList(ptr1.first, null);
+            ptr1 = ptr1.rest;
+            ptr2 = ptr2.rest;
+        }
+        return L;
+
     }
 
 
@@ -230,5 +265,16 @@ public class IntList {
         out.format(")");
         return out.toString();
     }
+
+
+    public static void main(String[] args)
+    {
+        IntList listA = IntList.of(3, 1, 2, 5);
+        IntList listB = IntList.of(1, 2, 3, 4, 5);
+        dcatenate(listA, listB);
+        catenate(listA, listB);
+    }
+
+
 }
 
